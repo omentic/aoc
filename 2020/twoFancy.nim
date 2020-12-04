@@ -1,3 +1,4 @@
+# Day Two: Password Philosophy
 import os, strutils, terminal
 
 let input = paramStr(1)

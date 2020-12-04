@@ -1,6 +1,7 @@
+# Day One: Report Repair
 import os, strutils
 
-let input = paramStr(1)
+let input: string = paramStr(1)
 var done: bool = false
 
 for one in lines(input):

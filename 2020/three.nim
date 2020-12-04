@@ -1,3 +1,4 @@
+# Day Three: Toboggan Trajectory
 import os, strutils, std/enumerate
 
 let input: string = paramStr(1)
