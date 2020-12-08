@@ -1,12 +1,12 @@
 # Day Eight: Handheld Halting
-import os, strutils, sequtils
+import os, strutils, sequtils, sugar
 
 let input: string = paramStr(1)
 var program: seq[tuple[op: string, arg: int]] =
   map(split(strip(readFile(input)), '\n'),
-  func (instr: string): (string, int) = return (instr[0..2], parseInt(instr[4..^1])))
+  instruction => (instruction[0..2], parseInt(instruction[4..^1])))
 
-func execute(program: seq[tuple[op: string, arg: int]]): tuple[status: bool, acc: int] =
+func execute(program: seq[tuple[op: string, arg: int]]): (bool, int) =
   var executed = newSeq[bool](len(program))
   var i, acc: int = 0
   while i < len(program):
@@ -26,9 +26,11 @@ func execute(program: seq[tuple[op: string, arg: int]]): tuple[status: bool, acc
       discard
   return (true, acc)
 
-echo execute(program).acc
+let result: tuple[status: bool, acc: int] = execute(program)
+echo result.acc
 
 for i, instruction in program:
   var program = program
   program[i].op = if program[i].op == "nop": "jmp" else: "nop"
-  if execute(program).status: echo execute(program).acc
+  let result: tuple[status: bool, acc: int] = execute(program)
+  if result.status: echo result.acc
