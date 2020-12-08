@@ -2,39 +2,33 @@
 import os, strutils, sequtils
 
 let input: string = paramStr(1)
-var program: seq[string] = split(strip(readFile(input)), '\n')
+var program: seq[tuple[op: string, arg: int]] =
+  map(split(strip(readFile(input)), '\n'),
+  func (instr: string): (string, int) = return (instr[0..2], parseInt(instr[4..^1])))
 
-proc execute(program: seq[string], executed: seq[int]) =
-  var executed = executed
-  var i, time, acc: int = 0
-  while i < len(program) and time < 250:
-    if executed[i] < 0:
-      echo acc
-      break
-    dec(executed[i])
-    var op: string = program[i][0..2]
-    var arg: int = parseInt(program[i][4..^1])
-    case op
+func execute(program: seq[tuple[op: string, arg: int]]): tuple[status: bool, acc: int] =
+  var executed = newSeq[bool](len(program))
+  var i, acc: int = 0
+  while i < len(program):
+    if executed[i]:
+      return (false, acc)
+    else:
+      executed[i] = true
+    case program[i].op
     of "acc":
-      inc(acc, arg)
+      inc(acc, program[i].arg)
       inc(i)
     of "jmp":
-      inc(i, arg)
+      inc(i, program[i].arg)
     of "nop":
       inc(i)
     else:
       discard
-    inc(time)
-  if i >= len(program):
-    echo acc
+  return (true, acc)
 
-execute(program, repeat(0, len(program)))
+echo execute(program).acc
 
 for i, instruction in program:
   var program = program
-  program[i] =
-    if contains(instruction, "jmp"):
-      replace(instruction, "jmp", "nop")
-    else:
-      replace(instruction, "nop", "jmp")
-  execute(program, repeat(100, len(program)))
+  program[i].op = if program[i].op == "nop": "jmp" else: "nop"
+  if execute(program).status: echo execute(program).acc
