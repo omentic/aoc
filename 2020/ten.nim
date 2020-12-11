@@ -19,3 +19,15 @@ for adapter in adapters:
   jolt = adapter
 
 echo one * three
+
+var paths: int = 0
+proc recursive(adapters: seq[int]) =
+  for i in 0 .. (len(adapters) - 4):
+    if adapters[i+2] - adapters[i] <= 3:
+      recursive(adapters[i+2..^1])
+    if adapters[i+3] - adapters[i] <= 3:
+      recursive(adapters[i+3..^1])
+  inc(paths)
+
+recursive(adapters)
+echo paths
