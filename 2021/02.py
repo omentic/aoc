@@ -4,7 +4,6 @@ file = open("input/02.txt").readlines()
 
 hori = 0
 depth = 0
-
 for line in file:
     com = line.split()
     if com[0] == "forward":
