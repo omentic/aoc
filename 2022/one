@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source "vars"
+LEVEL="1"
+SUBMIT_URL="https://adventofcode.com/${YEAR}/day/$((10#${DAY}))/answer"
+
+curl $SUBMIT_URL --cookie "session=${TOKEN}" --data "level=${LEVEL}&answer=$1" | rg -C 1 "main"

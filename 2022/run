@@ -1,0 +1,5 @@
+#!/bin/bash
+
+source "vars"
+
+nim c -r "nim/day${DAY}/main.nim" "nim/day${DAY}/input.txt"
