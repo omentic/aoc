@@ -13,4 +13,4 @@ cp "nim/day${DAY}/input.txt" "rust/day${DAY}/src/input.txt"
 
 subl -a "nim/day${DAY}/input.txt"
 subl -a "nim/day${DAY}/main.nim"
-chromium "https://adventofcode.com/${YEAR}/day/$((10#${DAY}))"
+# chromium "https://adventofcode.com/${YEAR}/day/$((10#${DAY}))"
