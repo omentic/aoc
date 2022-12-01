@@ -1,0 +1,7 @@
+#!/bin/bash
+
+source "vars"
+
+while inotifywait --quiet --event modify "nim/day${DAY}/src/main.nim"
+do ./run
+done

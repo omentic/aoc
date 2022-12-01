@@ -4,13 +4,14 @@ source "vars"
 INPUT_URL="https://adventofcode.com/${YEAR}/day/$((10#${DAY}))/input"
 
 mkdir "nim/day${DAY}"
-cp "main.nim" "nim/day${DAY}/main.nim"
+mkdir "nim/day${DAY}/src"
+cp "main.nim" "nim/day${DAY}/src/main.nim"
 curl $INPUT_URL --cookie "session=${TOKEN}" > "nim/day${DAY}/input.txt"
 
 cargo new "rust/day${DAY}"
 cp "main.rs" "rust/day${DAY}/src/main.rs"
-cp "nim/day${DAY}/input.txt" "rust/day${DAY}/src/input.txt"
+cp "nim/day${DAY}/input.txt" "rust/day${DAY}/input.txt"
 
 subl -a "nim/day${DAY}/input.txt"
-subl -a "nim/day${DAY}/main.nim"
+subl -a "nim/day${DAY}/src/main.nim"
 # chromium "https://adventofcode.com/${YEAR}/day/$((10#${DAY}))"

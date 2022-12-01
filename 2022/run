@@ -1,5 +1,0 @@
-#!/bin/bash
-
-source "vars"
-
-nim c --warnings:off --hints:off -r "nim/day${DAY}/main.nim" "nim/day${DAY}/input.txt"

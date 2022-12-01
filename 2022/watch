@@ -1,7 +1,0 @@
-#!/bin/bash
-
-source "vars"
-
-while inotifywait --quiet --event modify "~/watched_file"
-do ./run
-done
