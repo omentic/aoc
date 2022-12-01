@@ -5,7 +5,7 @@ let input: string = paramStr(1)
 
 type Rule = tuple[field: string, values: seq[int]]
 
-let data: seq[string] = readFile(input).split("\n\n")
+let data: seq[string] = input.readFile().split("\n\n")
 let rules: seq[Rule] =
   data[0].split("\n")
     .map(foo => (foo.split(": ")[0], foo.split(": ")[1].split(" or ")
@@ -38,7 +38,7 @@ proc purge(tickets: seq[seq[int]], min: int, max: int): seq[seq[int]] =
       result.add(ticket)
 
 proc flip(tickets: seq[seq[int]]): seq[seq[int]] =
-  for i in 0 ..< tickets[0].len():
+  for i in 0 ..< tickets[0].len:
     var foo: seq[int]
     for ticket in tickets:
       foo.add(ticket[i])

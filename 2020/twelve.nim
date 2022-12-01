@@ -3,8 +3,8 @@ import os, strutils, sequtils, math, sugar
 
 let input: string = paramStr(1)
 let instructions: seq[tuple[action: char, value: int]] =
-  map(split(strip(readFile(input)), '\n'),
-    instruction => (instruction[0], parseInt(instruction[1..^1])))
+  input.readFile().strip().split('\n')
+    .map(instruction => (instruction[0], parseInt(instruction[1..^1])))
 
 var ferry, actual: tuple[latitude, longitude, bearing: int] = (0, 0, 0)
 var waypoint: tuple[latitude, longitude: int] = (1, 10)

@@ -4,12 +4,12 @@ import os, strutils
 let input: string = paramStr(1)
 var fieldedPassports, validPassports: int = 0
 
-for passport in split(readFile(input), "\n\n"):
+for passport in input.readFile().split("\n\n"):
   var fields, valid: int = 0
-  for pairs in split(strip(replace(passport, "\n", " ")), " "):
+  for pairs in passport.replace("\n", " ").strip().split(" "):
     let
-      key: string = split(pairs, ":")[0]
-      value: string = split(pairs, ":")[1]
+      key: string = pairs.split(":")[0]
+      value: string = pairs.split(":")[1]
     case key
     of "byr":
       if parseInt(value) in 1920 .. 2002:

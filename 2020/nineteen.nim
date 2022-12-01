@@ -2,7 +2,7 @@
 import std/[os, strutils, sequtils, sugar, algorithm]
 
 let input = paramStr(1).readFile().strip().split("\n\n")
-let rules: seq[string] = input[0].strip().split("\n")
+var rules: seq[string] = input[0].strip().split("\n")
   .sortedByIt(it.split(": ")[0].parseInt()).mapIt(it.split(": ")[1])
 
 let messages: seq[string] = input[1].strip().split("\n")

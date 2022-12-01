@@ -4,7 +4,7 @@ import std/[os, strutils, sequtils, sugar, tables]
 let input: string = paramStr(1)
 let program: seq[tuple[address, value: string]] =
   input.readFile().strip().split('\n')
-  .map(param => (param.split(" = ")[0], param.split(" = ")[1]))
+    .map(param => (param.split(" = ")[0], param.split(" = ")[1]))
 
 var mask: string = 'X'.repeat(36)
 var memory: seq[int] = newSeq[int](99999)

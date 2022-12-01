@@ -3,8 +3,8 @@ import os, strutils, sequtils, sugar
 
 let input: string = paramStr(1)
 var program: seq[tuple[op: string, arg: int]] =
-  map(split(strip(readFile(input)), '\n'),
-  instruction => (instruction[0..2], parseInt(instruction[4..^1])))
+  input.readFile().strip().split('\n')
+    .map(instruction => (instruction[0..2], parseInt(instruction[4..^1])))
 
 func execute(program: seq[tuple[op: string, arg: int]]): (bool, int) =
   var executed = newSeq[bool](len(program))

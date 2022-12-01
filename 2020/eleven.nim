@@ -2,16 +2,16 @@
 import os, strutils, sequtils, sugar
 
 let input: string = paramStr(1)
-var terminal: seq[seq[char]] = map(split(strip(readFile(input)), '\n'), row => @row)
-let height: int = len(terminal)
-let width: int = len(terminal[0])
+var terminal: seq[seq[char]] = input.readFile().strip().split('\n').map(row => @row)
+let height: int = terminal.len
+let width: int = terminal[0].len
 
 while true:
-  var prev, future: seq[char] = @(repeat('.', width)) # dummy floor
+  var prev, future: seq[char] = @('.'.repeat(width)) # dummy floor
   var buffer: seq[seq[char]]  = terminal
   for i, row in buffer:
     if height - i == 1:
-      future = @(repeat('.', width))
+      future = @('.'.repeat(width))
     else:
       future = buffer[i+1]
     for j, seat in row:
@@ -32,13 +32,13 @@ while true:
   terminal = buffer
 echo count($terminal, '#')
 
-terminal = map(split(strip(readFile(input)), '\n'), row => @row)
+terminal = input.readFile().strip().split('\n').map(row => @row)
 while true:
-  var prev, future: seq[char] = @(repeat('.', width)) # dummy floor
+  var prev, future: seq[char] = @('.'.repeat(width)) # dummy floor
   var buffer: seq[seq[char]] = terminal
   for i, row in buffer:
     if height - i == 1:
-      future = @(repeat('.', width))
+      future = @('.'.repeat(width))
     else:
       future = buffer[i+1]
     for j, seat in row:

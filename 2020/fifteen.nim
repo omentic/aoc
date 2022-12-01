@@ -1,10 +1,10 @@
 # Day Fifteen: Rambunctious Recitation
-import os, strutils, sequtils
+import std/[os, strutils, sequtils]
 
 let input: string = paramStr(1)
 
 proc recite(nth: int): int =
-  var numbers: seq[int] = map(split(strip(readFile(input)), ","), parseInt)
+  var numbers: seq[int] = input.readFile().strip().split(",").map(parseInt)
   var history: seq[int] = newSeqWith[int](nth, -1)
   for i in 0 .. nth - 2:
     let previous: int = numbers[i]

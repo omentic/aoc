@@ -2,13 +2,11 @@
 import os, strutils, sequtils
 
 let input: string = paramStr(1)
-let arrival: int = parseInt(splitLines(readFile(input))[0])
-let buses: seq[int] = map(split(splitLines(readFile(input))[1], ','),
+let arrival: int = input.readFile().splitLines()[0].parseInt()
+let buses: seq[int] = map(input.readFile().splitLines()[1].split(','),
   func (bus: string): int =
-    if bus == "x":
-      0
-    else:
-      parseInt(bus))
+    if bus == "x": 0
+    else: parseInt(bus))
 
 var earliest: tuple[id, wait: int] = (999, 999)
 for bus in buses:

@@ -2,9 +2,9 @@
 import os, strutils, sequtils, algorithm, math
 
 let input: string = paramStr(1)
-var adapters: seq[int] = map(split(strip(readFile(input)), '\n'), parseInt)
+var adapters: seq[int] = input.readFile().strip().split('\n').map(parseInt)
 adapters.add(0)
-adapters = sorted(adapters)
+adapters = adapters.sorted()
 adapters.add(adapters[^1] + 3)
 
 var jolt, one, three: int = 0

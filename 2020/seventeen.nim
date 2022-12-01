@@ -1,5 +1,5 @@
 # Day Seventeen: Conway Cubes
-import std/os, std/sets, std/enumerate
+import std/[os, sets, enumerate]
 
 let input: string = paramStr(1)
 type Coord = tuple[x,y,z,w: int]

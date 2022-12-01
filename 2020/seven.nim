@@ -3,9 +3,9 @@ import os, strutils, sequtils, sugar
 
 let input: string = paramStr(1)
 let rules: seq[tuple[outer: string, inner: seq[string]]] =
-  map(split(strip(readFile(input)), '\n'),
-    rule => (replace(split(rule, " contain ")[0], " bags"),
-      split(replace(replace(replace(split(rule, " contain ")[1], " bags"), " bag"), "."), ", ")))
+  input.readFile().strip().split('\n')
+    .map(rule => (rule.split(" contain ")[0].replace(" bags"),
+      rule.split(" contain ")[1].replace(" bags").replace(" bag").replace(".").split(", ")))
 
 proc outside(color: string): seq[string] =
   for rule in rules:
@@ -22,5 +22,5 @@ proc inside(color: string): int =
         else:
           result += parseInt($bag[0]) * (inside(bag[2..^1]) + 1)
 
-echo len(deduplicate(outside("shiny gold")))
+echo outside("shiny gold").deduplicate().len
 echo inside("shiny gold")

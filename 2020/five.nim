@@ -1,5 +1,5 @@
 # Day Five: Binary Boarding
-import os, math, std/enumerate
+import os, math
 
 let input: string = paramStr(1)
 
@@ -9,10 +9,10 @@ var
   flight: seq[int]
 for seat in lines(input):
   var row, column, id: int = 0
-  for i, char in enumerate(seat[0..^4]):
+  for i, char in seat[0..^4]:
     if char == 'B':
       row += 2^(7-i) div 2
-  for i, char in enumerate(seat[7..^1]):
+  for i, char in seat[7..^1]:
     if char == 'R':
       column += 2^(3-i) div 2
   id = row * 8 + column
