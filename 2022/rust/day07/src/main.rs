@@ -2,7 +2,7 @@ use std::cell::{Cell, RefCell};
 use std::cmp;
 use std::env;
 use std::fs;
-use std::rc::Rc;
+use std::rc::{Rc, Weak};
 
 struct Directory {
     id: String,
@@ -10,7 +10,7 @@ struct Directory {
     // mmm i'd rather have a plain Directory instead of Rc<Directory>
     // but i get "cannot move out of x which is behind a shared reference"
     children: RefCell<Vec<Rc<Directory>>>,
-    parent: Option<Rc<Directory>>
+    parent: Option<Weak<Directory>>
 }
 
 fn main() {
@@ -33,7 +33,7 @@ fn main() {
                 // println!("$ ls")
             },
             ["$", "cd", ".."] => {
-                current = current.parent.clone().unwrap();
+                current = current.parent.clone().unwrap().upgrade().unwrap(); // lmao
                 // println!("$ cd ..");
             },
             ["$", "cd", id] => {
@@ -52,7 +52,7 @@ fn main() {
                     id: String::from(id),
                     size: Cell::from(0),
                     children: RefCell::from(Vec::new()),
-                    parent: Option::from(current.clone())
+                    parent: Option::from(Rc::downgrade(&current))
                 }));
                 // println!("dir {}", id)
             },
