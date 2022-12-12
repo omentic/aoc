@@ -2,7 +2,7 @@
 
 Yearly Advent of Code work.
 
-## 2022 ⭐ 10/10
+## 2022 ⭐ 22/22
 
 ```bash
 # Nim
@@ -26,7 +26,7 @@ cd 2021
 python3 01.py input/01.txt
 ```
 
-## 2020 ⭐ 37/50
+## 2020 ⭐ 38/50
 
 ```bash
 # Nim
@@ -38,13 +38,13 @@ nim compile --run one.nim input/one.txt
 ## 2019 ⭐ 10/50
 
 ```bash
-cd 2019
-
 # Go
-go run one.go input/one.txt
+cd 2019
+go run go/day01.go input/day01.txt
 
 # Nim
-nim compile --run one.nim input/one.txt
+cd ..
+nim compile --run nim/day01.nim input/day01.txt
 ```
 
 ## 2018 ⭐ 6/50
