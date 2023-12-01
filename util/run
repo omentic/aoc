@@ -2,4 +2,4 @@
 
 source "vars"
 
-nim c --warnings:off --hints:off -r "nim/day${DAY}/src/main.nim" "nim/day${DAY}/input.txt"
+nim c --warnings:off --hints:off -r "nim/day${DAY}.nim" "input/day${DAY}.txt"

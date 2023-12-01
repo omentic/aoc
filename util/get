@@ -3,15 +3,10 @@
 source "vars"
 INPUT_URL="https://adventofcode.com/${YEAR}/day/$((10#${DAY}))/input"
 
-mkdir "nim/day${DAY}"
-mkdir "nim/day${DAY}/src"
-cp "main.nim" "nim/day${DAY}/src/main.nim"
-curl $INPUT_URL --cookie "session=${TOKEN}" > "nim/day${DAY}/input.txt"
+cp "main.nim" "nim/day${DAY}.nim"
+cp "main.ml" "ocaml/day${DAY}.ml"
+curl $INPUT_URL --cookie "session=${TOKEN}" > "input/day${DAY}.txt"
 
-cargo new "rust/day${DAY}"
-cp "main.rs" "rust/day${DAY}/src/main.rs"
-cp "nim/day${DAY}/input.txt" "rust/day${DAY}/input.txt"
-
-subl -a "nim/day${DAY}/input.txt"
-subl -a "nim/day${DAY}/src/main.nim"
-# chromium "https://adventofcode.com/${YEAR}/day/$((10#${DAY}))"
+subl -a "input/day${DAY}.txt"
+subl -a "nim/day${DAY}.nim"
+xdg-open "https://adventofcode.com/${YEAR}/day/$((10#${DAY}))"

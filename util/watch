@@ -2,6 +2,6 @@
 
 source "vars"
 
-while inotifywait --quiet --event modify "nim/day${DAY}/src/main.nim"
+while inotifywait --quiet --event modify "nim/day${DAY}.nim"
 do ./run
 done
